@@ -1,9 +1,6 @@
 package com.example.pdsacw.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "bills")
@@ -11,11 +8,12 @@ import jakarta.persistence.Table;
 public class Bill {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int BillId;
 
     private String BillDescription;
 
-    @Column(nullable = false)
+    
     private String BillDate;
 
     @Column(nullable = false)
