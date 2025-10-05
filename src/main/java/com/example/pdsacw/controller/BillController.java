@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RestController
 @RequestMapping("/bills")
 public class BillController {
@@ -22,9 +24,9 @@ public class BillController {
         return billService.CreateBill(bill);
     }
 
-    @PutMapping
-    public Bill updateBill(@Valid @RequestBody Bill bill) {
-        return billService.SaveBill(bill);
+    @PutMapping("/{id}")
+    public Bill updateBill(@PathVariable long id,@Valid @RequestBody Bill bill) {
+        return billService.UpdateBill(bill, id);
     }
 
     @GetMapping
@@ -33,12 +35,12 @@ public class BillController {
     }
 
     @GetMapping("/{id}")
-    public Bill getBillById(@Valid @PathVariable int id) {
+    public Bill getBillById(@PathVariable int id) {
         return billService.GetBillById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBillById(@Valid @PathVariable long id) {
+    public void deleteBillById(@PathVariable long id) {
         billService.DeleteBillById(id);
     }
 }

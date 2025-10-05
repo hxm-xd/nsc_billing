@@ -28,7 +28,7 @@ public class ServiceController {
     }
 
     @GetMapping("/{id}")
-    public Service2 getService(@Valid @PathVariable long id) {
+    public Service2 getService(@PathVariable long id) {
         return serviceService.getServiceById(id);
     }
 
@@ -38,7 +38,7 @@ public class ServiceController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteService(@Valid @PathVariable long id) {
+    public void deleteService(@PathVariable long id) {
         serviceService.deleteServiceById(id);
     }
 }

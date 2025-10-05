@@ -21,6 +21,9 @@ public class Bill {
     @NotNull(message = " Bill type cannot be null")
     private String BillType;
 
+    @NotNull
+    private String BillAmount;
+
 
     public int getBillId() {
         return BillId;
@@ -52,5 +55,13 @@ public class Bill {
 
     public void setBillType(String billType) {
         BillType = billType;
+    }
+
+    public String getBillAmount() {
+        return BillAmount;
+    }
+
+    public void setBillAmount(String billAmount) {
+        BillAmount = billAmount;
     }
 }

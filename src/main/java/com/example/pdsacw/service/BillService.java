@@ -31,7 +31,16 @@ public class BillService {
         billRepository.deleteById(id);
     }
 
-    public Bill SaveBill(Bill bill) {
-        return billRepository.save(bill);
+    public Bill UpdateBill(Bill bill, long id) {
+        Bill existingBill = billRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Bill not found"));
+
+        existingBill.setBillAmount(bill.getBillAmount());
+        existingBill.setBillDate(bill.getBillDate());
+        existingBill.setBillDescription(bill.getBillDescription());
+        existingBill.setBillId(bill.getBillId());
+        existingBill.setBillType(bill.getBillType());
+
+        return billRepository.save(existingBill);
     }
 }
