@@ -1,6 +1,7 @@
 package com.example.pdsacw.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "services")
@@ -11,9 +12,12 @@ public class Service2 {
     private int ServiceId;
 
     @Column(nullable = false)
+    @NotNull(message = "Name cannot be null")
     private String ServiceName;
 
+
     @Column(nullable = false)
+    @NotNull(message = "Price cannot be null")
     private double servicePrice;
 
 

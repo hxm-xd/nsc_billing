@@ -30,4 +30,8 @@ public class BillService {
     public void DeleteBillById(long id) {
         billRepository.deleteById(id);
     }
+
+    public Bill SaveBill(Bill bill) {
+        return billRepository.save(bill);
+    }
 }

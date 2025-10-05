@@ -2,6 +2,7 @@ package com.example.pdsacw.controller;
 
 import com.example.pdsacw.entity.Product;
 import com.example.pdsacw.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@Valid @RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
@@ -28,17 +29,17 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable int id) {
+    public Product getProductById(@Valid @PathVariable int id) {
         return productService.getProductById(id);
     }
 
     @PutMapping
-    public Product updateProduct(@RequestBody Product product) {
+    public Product updateProduct(@Valid @RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable long id) {
+    public void deleteProduct(@Valid @PathVariable long id) {
         productService.deleteProduct(id);
     }
 

@@ -1,6 +1,7 @@
 package com.example.pdsacw.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "products")
@@ -10,11 +11,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ProductId;
 
+    @NotNull(message = "Name cannot be null")
     private String ProductName;
+
 
     private String ProductDescription;
 
     @Column(nullable = false)
+    @NotNull(message = "Price cannot be null")
     private int ProductPrice;
 
 

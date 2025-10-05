@@ -2,6 +2,7 @@ package com.example.pdsacw.controller;
 
 import com.example.pdsacw.entity.Bill;
 import com.example.pdsacw.service.BillService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,13 @@ public class BillController {
     }
 
     @PostMapping
-    public Bill createBill(@RequestBody Bill bill) {
+    public Bill createBill(@Valid @RequestBody Bill bill) {
         return billService.CreateBill(bill);
+    }
+
+    @PutMapping
+    public Bill updateBill(@Valid @RequestBody Bill bill) {
+        return billService.SaveBill(bill);
     }
 
     @GetMapping
@@ -27,12 +33,12 @@ public class BillController {
     }
 
     @GetMapping("/{id}")
-    public Bill getBillById(@PathVariable int id) {
+    public Bill getBillById(@Valid @PathVariable int id) {
         return billService.GetBillById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBillById(@PathVariable long id) {
+    public void deleteBillById(@Valid @PathVariable long id) {
         billService.DeleteBillById(id);
     }
 }

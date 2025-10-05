@@ -1,7 +1,7 @@
 package com.example.pdsacw.entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Description;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "bills")
@@ -14,9 +14,11 @@ public class Bill {
 
     private String BillDescription;
 
+    @NotNull(message = "Date cannot be null")
     private String BillDate;
 
     @Column(nullable = false)
+    @NotNull(message = " Bill type cannot be null")
     private String BillType;
 
 

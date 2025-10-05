@@ -2,6 +2,7 @@ package com.example.pdsacw.controller;
 
 import com.example.pdsacw.entity.Service2;
 import com.example.pdsacw.service.ServiceService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class ServiceController {
     }
 
     @PostMapping
-    public Service2 addService(@RequestBody Service2 service) {
+    public Service2 addService(@Valid @RequestBody Service2 service) {
         return serviceService.saveService(service);
     }
 
@@ -27,17 +28,17 @@ public class ServiceController {
     }
 
     @GetMapping("/{id}")
-    public Service2 getService(@PathVariable long id) {
+    public Service2 getService(@Valid @PathVariable long id) {
         return serviceService.getServiceById(id);
     }
 
     @PutMapping
-    public Service2 updateService(@RequestBody Service2 service) {
+    public Service2 updateService(@Valid @RequestBody Service2 service) {
         return serviceService.saveService(service);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteService(@PathVariable long id) {
+    public void deleteService(@Valid @PathVariable long id) {
         serviceService.deleteServiceById(id);
     }
 }
