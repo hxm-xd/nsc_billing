@@ -30,4 +30,9 @@ public class BillController {
     public Bill getBillById(@PathVariable int id) {
         return billService.GetBillById(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteBillById(@PathVariable long id) {
+        billService.DeleteBillById(id);
+    }
 }

@@ -26,4 +26,8 @@ public class BillService {
     public Bill GetBillById(long id) {
         return billRepository.getReferenceById(id);
     }
+
+    public void DeleteBillById(long id) {
+        billRepository.deleteById(id);
+    }
 }
