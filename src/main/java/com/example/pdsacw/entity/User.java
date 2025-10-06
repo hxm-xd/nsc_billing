@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,6 +21,7 @@ public class User {
     @NotNull(message = "Email cannot be null")
     @Column(nullable = false, unique = true)
     private String email;
+
 
     @NotNull(message = "Password cannot be null")
     @Column(nullable = false)
