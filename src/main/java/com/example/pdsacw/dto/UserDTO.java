@@ -15,13 +15,17 @@ public class UserDTO {
     @NotNull(message = "Password cannot be null")
     private String Password;
 
+    @NotNull
+    private String Role;
+
     public UserDTO() {}
 
-    public UserDTO(int  UserId, String Username, String email, String Password) {
+    public UserDTO(int  UserId, String Username, String email, String Password, String role) {
         this.UserId = UserId;
         this.Username = Username;
         this.email = email;
         this.Password = Password;
+        this.Role = role;
     }
 
     public int getUserId() {
@@ -50,5 +54,12 @@ public class UserDTO {
     }
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+    public void setRole(String role) {
+        Role = role;
     }
 }

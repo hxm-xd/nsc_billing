@@ -5,6 +5,7 @@ import com.example.pdsacw.entity.Bill;
 import com.example.pdsacw.repository.BillRepository;
 import com.example.pdsacw.service.BillService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,7 @@ public class BillController {
         return billService.toDTO(bill);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteBillById(@PathVariable long id) {
         billService.DeleteBillById(id);

@@ -46,8 +46,9 @@ public class UserService {
         return new UserDTO(
                 user.getId(),
                 user.getUsername(),
+                user.getEmail(),
                 user.getPassword(),
-                user.getEmail()
+                user.getRole()
         );
     }
 
@@ -55,8 +56,9 @@ public class UserService {
         User user = new User();
         user.setId(dto.getUserId());
         user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setEmail(dto.getEmail());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRole(dto.getRole());
 
         return user;
     }

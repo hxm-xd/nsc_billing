@@ -5,6 +5,7 @@ import com.example.pdsacw.entity.User;
 import com.example.pdsacw.repository.UserRepository;
 import com.example.pdsacw.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,6 +58,7 @@ public class UserController {
         return userService.toDTO(userService.updateUser(existingUser));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable long id) {
         userService.deleteUser(id);

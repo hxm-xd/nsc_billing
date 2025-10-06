@@ -7,6 +7,7 @@ import com.example.pdsacw.repository.ServiceRepository;
 import com.example.pdsacw.service.ProductService;
 import com.example.pdsacw.service.ServiceService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +57,7 @@ public class ServiceController {
         return serviceService.toDTO(saved);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteService(@PathVariable long id) {
         serviceService.deleteServiceById(id);

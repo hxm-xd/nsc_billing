@@ -27,6 +27,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @NotNull(message= "Role cannot be null")
+    @Column(nullable = false)
+    private String role;
+
 
     public String getEmail() {
         return email;
@@ -57,6 +61,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

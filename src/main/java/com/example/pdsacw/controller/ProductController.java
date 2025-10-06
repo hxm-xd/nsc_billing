@@ -5,6 +5,7 @@ import com.example.pdsacw.entity.Product;
 import com.example.pdsacw.repository.ProductRepository;
 import com.example.pdsacw.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class ProductController {
         return productRepository.save(savedProduct);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable long id) {
         productService.deleteProduct(id);
