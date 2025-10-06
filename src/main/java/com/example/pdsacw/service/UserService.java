@@ -1,5 +1,6 @@
 package com.example.pdsacw.service;
 
+import com.example.pdsacw.dto.UserDTO;
 import com.example.pdsacw.entity.User;
 import com.example.pdsacw.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,25 @@ public class UserService {
 
     public void deleteUser(long id) {
         userRepository.deleteById(id);
+    }
+
+    public UserDTO toDTO(User user) {
+        return new UserDTO(
+                user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail()
+        );
+    }
+
+    public User toEntity(UserDTO dto) {
+        User user = new User();
+        user.setId(dto.getUserId());
+        user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
+        user.setEmail(dto.getEmail());
+
+        return user;
     }
 
 }

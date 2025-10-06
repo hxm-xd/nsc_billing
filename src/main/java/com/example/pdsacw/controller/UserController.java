@@ -1,42 +1,60 @@
 package com.example.pdsacw.controller;
 
-
+import com.example.pdsacw.dto.UserDTO;
 import com.example.pdsacw.entity.User;
+import com.example.pdsacw.repository.UserRepository;
 import com.example.pdsacw.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping
-    public User createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
+    public UserDTO createUser(@Valid @RequestBody UserDTO userDTO) {
+       User user = userService.toEntity(userDTO);
+       User savedUser = userRepository.save(user);
+
+       return  userService.toDTO(savedUser);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(userService::toDTO)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUserById(@PathVariable long id) {
-        return userService.getUserById(id);
+    public UserDTO getUserById(@PathVariable long id) {
+        User user = userService.getUserById(id)
+                .orElseThrow(() -> new RuntimeException("User with id " + id + " not found")
+                );
+        return userService.toDTO(user);
     }
 
-    @PutMapping
-    public User updateUser(@Valid @RequestBody User user) {
-        return userService.updateUser(user);
+    @PutMapping("/{id}")
+    public UserDTO updateUser(@PathVariable long id, @Valid @RequestBody UserDTO userDTO) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        existingUser.setUsername(userDTO.getUsername());
+        existingUser.setPassword(userDTO.getPassword());
+
+        return userService.toDTO(userService.updateUser(existingUser));
     }
 
     @DeleteMapping("/{id}")

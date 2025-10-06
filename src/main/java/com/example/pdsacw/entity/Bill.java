@@ -22,7 +22,7 @@ public class Bill {
     private String BillType;
 
     @NotNull
-    private String BillAmount;
+    private Double BillAmount;
 
 
     public int getBillId() {
@@ -57,11 +57,12 @@ public class Bill {
         BillType = billType;
     }
 
-    public String getBillAmount() {
+    public Double getBillAmount() {
         return BillAmount;
     }
 
-    public void setBillAmount(String billAmount) {
+    public void setBillAmount(Double billAmount) {
         BillAmount = billAmount;
     }
+
 }

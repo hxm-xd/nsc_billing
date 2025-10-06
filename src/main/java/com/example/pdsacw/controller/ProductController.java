@@ -1,41 +1,58 @@
 package com.example.pdsacw.controller;
 
+import com.example.pdsacw.dto.ProductDTO;
 import com.example.pdsacw.entity.Product;
+import com.example.pdsacw.repository.ProductRepository;
 import com.example.pdsacw.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductRepository productRepository;
+    private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductRepository productRepository) {
         this.productService = productService;
+        this.productRepository = productRepository;
     }
 
     @PostMapping
-    public Product addProduct(@Valid @RequestBody Product product) {
-        return productService.saveProduct(product);
+    public ProductDTO addProduct(@Valid @RequestBody ProductDTO productDTO) {
+        Product product = productService.toEntity(productDTO);
+        Product savedProduct = productRepository.save(product);
+
+        return productService.toDTO(savedProduct);
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDTO> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(productService::toDTO)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+    public Optional<Product> getProductById(@PathVariable long id) {
+        return productRepository.findById(id);
     }
 
-    @PutMapping
-    public Product updateProduct(@Valid @RequestBody Product product) {
-        return productService.saveProduct(product);
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable long id, @Valid @RequestBody Product product) {
+        Product savedProduct = productService.getProductById(id)
+                .orElseThrow(() -> new RuntimeException("No Such product"));
+
+        savedProduct.setProductName(product.getProductName());
+        savedProduct.setProductDescription(product.getProductDescription());
+        savedProduct.setProductPrice(product.getProductPrice());
+
+        return productRepository.save(savedProduct);
     }
 
     @DeleteMapping("/{id}")
