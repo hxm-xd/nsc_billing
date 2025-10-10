@@ -1,7 +1,7 @@
 package com.example.pdsacw.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "services")

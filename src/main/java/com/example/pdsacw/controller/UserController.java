@@ -6,6 +6,7 @@ import com.example.pdsacw.repository.UserRepository;
 import com.example.pdsacw.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@EnableMethodSecurity
 public class UserController {
 
     private final UserService userService;
@@ -23,6 +25,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+
     @PostMapping
     public UserDTO createUser(@Valid @RequestBody UserDTO userDTO) {
        User user = userService.toEntity(userDTO);
@@ -31,6 +34,7 @@ public class UserController {
        return  userService.toDTO(savedUser);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @GetMapping
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
@@ -39,6 +43,7 @@ public class UserController {
                 .toList();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @GetMapping("/{id}")
     public UserDTO getUserById(@PathVariable long id) {
         User user = userService.getUserById(id)
@@ -47,6 +52,7 @@ public class UserController {
         return userService.toDTO(user);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PutMapping("/{id}")
     public UserDTO updateUser(@PathVariable long id, @Valid @RequestBody UserDTO userDTO) {
         User existingUser = userRepository.findById(id)
