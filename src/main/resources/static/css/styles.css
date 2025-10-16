@@ -4,6 +4,10 @@ html,body {
     scroll-behavior: smooth;
 }
 
+a{
+    cursor: pointer;
+}
+
 header{
     display: flex;
     align-items: center;
@@ -15,12 +19,18 @@ header{
     height: 10vh;
     width: 100%;
     z-index: 9999;
+    transition: ease-in-out 0.3s;
+}
+
+.h-after{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
 }
 
 header a,header h2{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    transition: 0.2s ease-in;
+    transition: 0.7s ease-in;
 }
 
 header a:hover,header h2:hover{
@@ -38,6 +48,11 @@ header img{
     height: 150px;
     padding-top: 10px;
     margin-left:-20px;
+    transition: 0.3s ease-in-out;
+}
+
+header img:hover{
+    transform: scale(1.05);
 }
 
 .list{
@@ -52,13 +67,20 @@ header img{
     animation: fadeIn 1s;
 }
 
+.hero h2{
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 .hero-content{
     background-size: cover;
     background: url(../images/hero-bg.jpg) no-repeat center;
     text-align: center;
     align-items: center;
-    animation:fadeIn 3s;
     display: flex;
     height: 100vh;
     padding-right: 20px;
@@ -86,7 +108,7 @@ header img{
 
 .about p{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .sectors{
@@ -114,7 +136,14 @@ header img{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
 
+.card{
+    transition: ease-in-out 0.2s;
+}
+
+.card:hover{
+    transform: scale(1.05);
 }
 
 .contact{
@@ -136,6 +165,10 @@ header img{
     font-size: 14px;
 }
 
+.contact a{
+    text-decoration: none;
+}
+
 .contact-cards{
     display: flex;
     flex-direction: column;
@@ -154,6 +187,15 @@ header img{
     padding: 10px;
 }
 
+.card-h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.contact-card p{
+    text-decoration: none;
+}
+
 footer{
     text-align: center;
     align-items: center;
@@ -163,4 +205,12 @@ footer{
     background-color: black;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+}
+
+.button{
+    border: none;
+    color: black;
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
 }
