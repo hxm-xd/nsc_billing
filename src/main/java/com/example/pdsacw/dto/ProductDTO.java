@@ -12,15 +12,24 @@ public class ProductDTO {
     private String ProductDescription;
 
     @NotNull(message = "Product Price cannot be null.")
-    private int ProductPrice;
+    private Double ProductPrice;
+
+    @NotNull(message = "Selling price cannot be null")
+    private Double ProductSellingPrice;
+
+    @NotNull(message = "Product quantity cannot be 0")
+    private int ProductQuantity;
 
     public ProductDTO() {}
 
-    public ProductDTO(int ProductId, String ProductName, String ProductDescription, int ProductPrice) {
+    public ProductDTO(int ProductId, String ProductName, String ProductDescription, Double ProductPrice,
+                      Double ProductSellingPrice, int ProductQuantity) {
         this.ProductId = ProductId;
         this.ProductName = ProductName;
         this.ProductDescription = ProductDescription;
         this.ProductPrice = ProductPrice;
+        this.ProductSellingPrice = ProductSellingPrice;
+        this.ProductQuantity = ProductQuantity;
     }
 
     public int getProductId() {
@@ -45,11 +54,25 @@ public class ProductDTO {
         this.ProductDescription = ProductDescription;
     }
 
-    public int getProductPrice() {
+    public Double getProductPrice() {
         return ProductPrice;
     }
-    public void setProductPrice(int ProductPrice) {
+    public void setProductPrice(Double ProductPrice) {
         this.ProductPrice = ProductPrice;
+    }
+
+    public Double getProductSellingPrice() {
+        return ProductSellingPrice;
+    }
+    public void setProductSellingPrice(Double ProductSellingPrice) {
+        this.ProductSellingPrice = ProductSellingPrice;
+    }
+
+    public int getProductQuantity() {
+        return ProductQuantity;
+    }
+    public void setProductQuantity(int ProductQuantity) {
+        this.ProductQuantity = ProductQuantity;
     }
 
 

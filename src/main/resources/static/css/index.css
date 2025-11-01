@@ -15,27 +15,31 @@ header{
     position: fixed;
     text-align: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px;
     height: 10vh;
     width: 100%;
     z-index: 9999;
-    transition: ease-in-out 0.3s;
+    transition: ease-in-out .4s;
 }
 
 .h-after{
     display: flex;
-    flex-direction: row;
-    background-color: white;
+    background-image: -moz-radial-gradient(circle, #c5c5c5 0%, #efefef 100%);
 }
 
-header a,header h2{
+header a{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: 0.7s ease-in;
+    transition: 0.2s ease-in;
+    padding-right: 20px;
 }
 
 header a:hover,header h2:hover{
+    color: cornflowerblue;
     text-decoration: underline;
-    transform: scale(1.1);
+}
+
+.navbar{
+    transition: ease-in-out 0.3s;
 }
 
 .navbar a{
@@ -46,8 +50,7 @@ header a:hover,header h2:hover{
 
 header img{
     height: 150px;
-    padding-top: 10px;
-    margin-left:-20px;
+    margin-left: -30px;
     transition: 0.3s ease-in-out;
 }
 
@@ -90,7 +93,6 @@ header img:hover{
     padding-top: 80px;
     text-align: center;
     align-items: center;
-    align-content: center;
     height: fit-content;
     padding-left: 5rem;
     padding-right: 5rem;
@@ -99,6 +101,9 @@ header img:hover{
 
 .about-content{
     gap: 50px;
+    padding: 50px;
+    display: flex;
+
 }
 
 .about h2{
@@ -109,6 +114,18 @@ header img:hover{
 .about p{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
+}
+
+.carousel{
+    width: 700px;
+    height: fit-content;
+    padding-top: 20px;
+}
+
+.carousel-inner{
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .sectors{
@@ -126,13 +143,16 @@ header img:hover{
 
 .sector-content{
     align-items: center;
-    text-align: center;
-    justify-content: center;
+    text-align: right;
+    justify-content: right;
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
 }
 
 .sector-cards{
     gap: 50px;
-    padding: 50px;
+    padding-left: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -143,16 +163,19 @@ header img:hover{
 }
 
 .card:hover{
-    transform: scale(1.05);
+    transform: translateY(-10px);
 }
 
 .contact{
     padding-top: 80px;
+    padding-left: 80px;
     text-align: center;
     align-items: center;
     height: fit-content;
     gap: 50px;
     padding-bottom: 80px;
+    display: flex;
+    flex-direction: row;
 }
 
 .contact h2{
@@ -194,6 +217,7 @@ header img:hover{
 
 .contact-card p{
     text-decoration: none;
+    font-size: 12px;
 }
 
 footer{

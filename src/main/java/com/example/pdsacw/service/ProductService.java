@@ -42,7 +42,9 @@ public class ProductService {
               product.getProductId(),
               product.getProductName(),
               product.getProductDescription(),
-              product.getProductPrice()
+              product.getProductPrice(),
+              product.getProductSellingPrice(),
+              product.getProductQuantity()
               );
     }
 

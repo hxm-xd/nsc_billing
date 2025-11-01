@@ -14,12 +14,17 @@ public class Product {
     @NotNull(message = "Name cannot be null")
     private String ProductName;
 
-
     private String ProductDescription;
 
     @Column(nullable = false)
     @NotNull(message = "Price cannot be null")
-    private int ProductPrice;
+    private Double ProductPrice;
+
+    @NotNull(message = "Selling price cannot be null")
+    private Double ProductSellingPrice;
+
+    @NotNull
+    private int ProductQuantity;
 
 
     public int getProductId() {
@@ -46,12 +51,20 @@ public class Product {
         ProductDescription = productDescription;
     }
 
-    public int getProductPrice() {
+    public Double getProductPrice() {
         return ProductPrice;
     }
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(Double productPrice) {
         ProductPrice = productPrice;
     }
+
+    public Double getProductSellingPrice() {return ProductSellingPrice;}
+
+    public void setProductSellingPrice(Double productSellingPrice) {this.ProductSellingPrice = productSellingPrice;}
+
+    public int getProductQuantity() {return ProductQuantity;}
+
+    public void setProductQuantity(int productQuantity) {this.ProductQuantity = productQuantity;}
 }
 

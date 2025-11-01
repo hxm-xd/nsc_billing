@@ -24,6 +24,9 @@ public class Bill {
     @NotNull
     private Double BillAmount;
 
+    @NotNull
+    private boolean BillPaid;
+
 
     public int getBillId() {
         return BillId;
@@ -64,5 +67,5 @@ public class Bill {
     public void setBillAmount(Double billAmount) {
         BillAmount = billAmount;
     }
-
+    
 }
